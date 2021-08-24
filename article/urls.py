@@ -1,8 +1,9 @@
 from django.urls import path
-
+from article.views import article_detail, article_list
 
 app_name = 'article'
 
 urlpatterns = [
-    # 目前还没有urls
+    path('list', article_list),
+    path('detail/<int:id>', article_detail),
 ]
