@@ -1,0 +1,209 @@
+﻿{% extends "base.html" %}
+{% block content %}
+
+
+<head>
+    <!-- Meta -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- favicon -->
+    <link rel="icon" sizes="16x16" href="/static/bootstrap/img/favicon.png">
+
+    <!-- Title -->
+    <title> NoonPost. - Personal Blog HTML Template </title>
+
+    <!-- Font Google -->
+    <link href="https://fonts.googleapis.com/css?family=Muli:300,400,500,600,700,800,900&display=swap" rel="stylesheet">
+
+    <!-- CSS Plugins -->
+    <link rel="stylesheet" href="/static/bootstrap/css/all.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/elegant-font-icons.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/owl.carousel.css">
+
+    <!-- main style -->
+    <link rel="stylesheet" href="/static/bootstrap/css/style.css">
+    
+</head>
+
+<body>
+    <!--loading -->
+    <div class="loading">
+        <div class="circle"></div>
+    </div>
+
+    <!--carousel-hero-->
+    <section class="section carousel-hero">
+        <div class="owl-carousel">
+            <div class="hero d-flex align-items-center " style="background-image: url('/static/bootstrap/img/hero/2.jpg')">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                            <div class="hero-content">
+{#                                <a href="blog-grid.html" class="categorie">travel</a>#}
+                                <h2>
+                                    <a href="index.html">{% block title %}{{ title }}{% endblock %}</a>
+                                </h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/-->
+
+    <!--masonry-layout-->
+    <section class="mt-40 masonry-layout">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card-columns">
+
+                        <!--Post-4-->
+                        {% for article in articles %}
+                        <div class="card">
+                            <div class="post-card">
+                                <div class="post-card-image">
+                                    <a href={% url 'article:detail' article.id %}>
+                                     <img src= "{{ MEDIA_URL }}{{ article.image }}">
+                                    </a>
+                                   
+                                </div>
+                                <div class="post-card-content">
+                                    <a href={% url 'article:category' article.category.id %} class="categorie">{{ article.category.name }}</a>
+    
+                                    <h5>
+                                        <a href={% url 'article:detail' article.id %}>{{ article.title }}</a>
+                                    </h5>
+                                    {% autoescape off %}
+                                    <p>{{ article.outline }}
+                                    </p>
+                                    {% endautoescape %}
+                                    <div class="post-card-info">
+                                        <ul class="list-inline">
+                                            <li>
+                                                <a href={% url 'article:author' %}>
+                                                    <img src="/static/bootstrap/img/author/1.jpg" alt="">
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href={% url 'article:author' %}>Ce</a>
+                                            </li>
+                                            <li class="dot"></li>
+                                            <li>{{ article.created_time }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        <!--/-->
+
+                    </div>
+                    <!--pagination-->
+                    <div class="pagination mt-30">
+                        <ul class="list-inline">
+                            <li class="active">
+                                <a href="#">1</a>
+                            </li>
+                            <li>
+                                <a href="#">2</a>
+                            </li>
+                            <li>
+                                <a href="#">3</a>
+                            </li>
+                            <li>
+                                <a href="#">4</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <i class="arrow_carrot-2right"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/-->
+
+    <!--newslettre-->
+{#    <section class="newslettre">#}
+{#        <div class="container-fluid">#}
+{#            <div class="row d-flex align-items-center">#}
+{#                <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 text-center">#}
+{#                    <div class="newslettre-info">#}
+{#                        <h5>Subscribe to our Newslatter</h5>#}
+{#                        <p> Sign up for free and be the first to get notified about new posts. </p>#}
+{#                    </div>#}
+{#                    <form action="#" class="newslettre-form">#}
+{#                        <div class="form-flex">#}
+{#                            <div class="form-group">#}
+{#                                <input type="email" class="form-control" placeholder="Your email adress" required="required">#}
+{#                            </div>#}
+{#                            <button class="submit-btn" type="submit">Subscribe</button>#}
+{#                        </div>#}
+{#                    </form>#}
+{#                    <div class="social-icones">#}
+{#                        <ul class="list-inline">#}
+{#                            <li>#}
+{#                                <a href="#">#}
+{#                                    <i class="fab fa-facebook-f"></i>Facebook</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="#">#}
+{#                                    <i class="fab fa-twitter"></i>Twitter </a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="#">#}
+{#                                    <i class="fab fa-instagram"></i>Instagram </a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a href="#">#}
+{#                                    <i class="fab fa-youtube"></i>Youtube</a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </section>#}
+
+  
+    <!--Search-form-->
+    <div class="search">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-sm-10 offset-sm-1 text-center">
+                    <button type="button" class="close">
+                        <i class="icon_close"></i>
+                    </button>
+                    <form class="search-form" action="#">
+                        <input type="search" value="" placeholder="What are you looking for?">
+                        <button type="submit" class="search-btn">search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/-->
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="/static/bootstrap/js/jquery-3.5.0.min.js"></script>
+    <script src="/static/bootstrap/js/popper.min.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- JS Plugins  -->
+    <script src="/static/bootstrap/js/ajax-contact.js"></script>
+    <script src="/static/bootstrap/js/owl.carousel.min.js"></script>
+    <script src="/static/bootstrap/js/main.js"></script>
+
+
+</body>
+
+{% endblock %}

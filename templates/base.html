@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 
 <!DOCTYPE html>
 <!-- 网站主语言 -->
@@ -15,23 +15,136 @@
 
 <body>
     <!-- 引入导航栏 -->
-    {% include 'header.html' %}
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container-fluid">
+            <!--logo-->
+            <div class="logo">
+                <a href="{% url 'article:index' %}">
+                    Ce的qq空间
+                </a>
+            </div>
+            <!--/-->
+
+            <!--navbar-collapse-->
+            <div class="collapse navbar-collapse" id="main_nav">
+                <ul class="navbar-nav ml-auto mr-auto">
+                    {% for category in categories %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" href={% url 'article:category' category.id %}> {{ category.name }} </a>
+                        {% endfor %}
+{#                        <ul class="dropdown-menu fade-up">#}
+{#                            <li>#}
+{#                                <a class="dropdown-item active" href="index.html">Demo 1</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a class="dropdown-item" href="index-2.html">Demo 2 </a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a class="dropdown-item" href="index-3.html">Demo 3 </a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a class="dropdown-item" href="index-4.html">Demo 4 </a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a class="dropdown-item" href="index-5.html">Demo 5</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a class="dropdown-item" href="index-6.html">Demo 6 </a>#}
+{#                            </li>#}
+{#                        </ul>#}
+                    </li>
+
+{#                    <li class="nav-item dropdown">#}
+{#                        <a class="nav-link" href={{ article.category }}> 技术记录 </a>#}
+{#                        <ul class="dropdown-menu fade-up">#}
+{#                            <li>#}
+{#                                <a class="dropdown-item" href="blog-grid.html"> Blog grid</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a class="dropdown-item" href="blog-masonry.html"> Blog masonry </a>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                    </li>#}
+{#                    <li class="nav-item dropdown">#}
+{#                        <a class="nav-link" href="post-default.html" data-toggle="dropdown"> 旅行 </a>#}
+{#                        <ul class="dropdown-menu fade-up">#}
+{#                            <li>#}
+{#                                <a class="dropdown-item" href="post-default.html"> post default</a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a class="dropdown-item" href="post-no-sidebar.html"> post no sidebar </a>#}
+{#                            </li>#}
+{#                            <li>#}
+{#                                <a class="dropdown-item" href="post-left-sidebar.html"> post left sidebar </a>#}
+{#                            </li>#}
+{#                        </ul>#}
+                    </li>
+                </ul>
+            </div>
+            <!--/-->
+
+            <!--navbar-right-->
+            <div class="navbar-right ml-auto">
+                <div class="social-icones">
+                    <ul class="list-inline">
+{#                        <li>#}
+{#                            <a href="#">#}
+{#                                <i class="fab fa-facebook-f"></i>#}
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="#">#}
+{#                                <i class="fab fa-instagram"></i>#}
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="#">#}
+{#                                <i class="fab fa-twitter"></i>#}
+{#                            </a>#}
+{#                        </li>#}
+{#                        <li>#}
+{#                            <a href="#">#}
+{#                                <i class="fab fa-youtube"></i>#}
+{#                            </a>#}
+{#                        </li>#}
+                    </ul>
+                </div>
+
+{#                <div class="search-icon">#}
+{#                    <i class="icon_search"></i>#}
+{#                </div>#}
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main_nav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
+    </nav>
     <!-- 预留具体页面的位置 -->
     {% block content %}{% endblock content %}
     <!-- 引入注脚 -->
-    {% include 'footer.html' %}
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="copyright">
+                        <p>© Copyright 2021 <a href="http://www.bootstrapmb.com/">AssiaGroupe</a>, All rights reserved.</p>
+                    </div>
+                    <div class="back">
+                        <a href="#" class="back-top">
+                            <i class="arrow_up"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
     <!-- bootstrap.js 依赖 jquery.js 和popper.js，因此在这里引入 -->
     <script src="{% static 'jquery/jquery-3.3.1.js' %}"></script>
 
-    <!--
-        popper.js 采用 cdn 远程引入，意思是你不需要把它下载到本地。
-        在实际的开发中推荐静态文件尽量都使用 cdn 的形式。
-        教程采用本地引入是为了让读者了解静态文件本地部署的流程。
-    -->
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1-lts/dist/umd/popper.min.js"></script>
 
-    <!-- 引入bootstrap的js文件 -->
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1-lts/dist/umd/popper.min.js"></script>
+<script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
 </body>
 
 </html>

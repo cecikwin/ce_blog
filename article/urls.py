@@ -1,9 +1,15 @@
+from django.conf.urls.static import static
 from django.urls import path
-from article.views import article_detail, article_list
+from article.views import detail, index, author, contact, about, category
+from ceBlog import settings
 
-app_name = 'article'
+app_name = 'blog'
 
 urlpatterns = [
-    path('list', article_list),
-    path('detail/<int:id>', article_detail),
+    path('', index, name="index"),
+    path('detail/<int:id>', detail, name="detail"),
+    path('category/<int:id>', category, name="category"),
+    path('author', author, name="author"),
+    path('contact', contact, name="contact"),
+    path('about', about, name="about")
 ]
