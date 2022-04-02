@@ -20,7 +20,6 @@ def index(request):
 
 def detail(request, id):
     article = Articles.objects.get(id=id)
-    article.text = markdown.markdown(article.text)
     last_article = Articles.objects.filter(id__lt=id).order_by('id').last()
     next_article = Articles.objects.filter(id__gt=id).order_by('id').first()
     context = {'article': article, 'last_article': last_article, 'next_article': next_article}
@@ -48,20 +47,20 @@ def category(request, id):
     return render(request, "blog-grid.html", context)
 
 
-def inline_css(html, css=None):
-    if not css:
-        css = open('default.css', encoding='utf-8').read()
-    email_html_template = u"""
-            <!doctype html>
-            <html>
-                <head>
-                    <meta charset="UTF-8">
-                    <style>
-                        {css}
-                    </style>
-                </head>
-                <body>
-                    {content}
-                </body>
-            </html>"""
-    return email_html_template.format(css=css, content=html)
+# def inline_css(html, css=None):
+#     if not css:
+#         css = open('default.css', encoding='utf-8').read()
+#     email_html_template = u"""
+#             <!doctype html>
+#             <html>
+#                 <head>
+#                     <meta charset="UTF-8">
+#                     <style>
+#                         {css}
+#                     </style>
+#                 </head>
+#                 <body>
+#                     {content}
+#                 </body>
+#             </html>"""
+#     return email_html_template.format(css=css, content=html)
