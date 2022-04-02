@@ -13,7 +13,7 @@ base_context = {'categories': categories}
 # Create your views here.
 def index(request):
     articles = Articles.objects.all()
-    context = {'title': "Ce的qq空间", 'articles': articles}
+    context = {'title': "Ce的球球空间", 'articles': articles}
     context.update(base_context)
     return render(request, "index.html", context)
 
