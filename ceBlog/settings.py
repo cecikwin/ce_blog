@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-16qcna(&c$s!_d0y*ypkeh^8po5kw!&t0k&f+#+-bd=+8w1156
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -81,17 +81,6 @@ WSGI_APPLICATION = 'ceBlog.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'root',
-        'USER': 'root',
-        'PASSWORD': '123456',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-    }
-}
 
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -164,8 +153,6 @@ MARTOR_TOOLBAR_BUTTONS = [
 MARTOR_ENABLE_LABEL = False
 
 # Imgur API Keys
-MARTOR_IMGUR_CLIENT_ID = 'your-client-id'
-MARTOR_IMGUR_API_KEY = 'your-api-key'
 
 # Markdownify
 MARTOR_MARKDOWNIFY_FUNCTION = 'martor.utils.markdownify'  # default
@@ -209,11 +196,22 @@ LOGGING = {
             'filename': os.path.join(BASE_DIR, 'logs/debug.log'),
         },
     },
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
+        },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
+        },
+    },
     'loggers': {
         'django': {
             'handlers': ['file'],
             'level': 'INFO',
             'propagate': True,
+            'formatter': 'verbose',
         },
     },
 }
