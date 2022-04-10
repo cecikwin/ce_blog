@@ -24,6 +24,8 @@ def detail(request, id):
     next_article = Articles.objects.filter(id__gt=id).order_by('id').first()
     context = {'article': article, 'last_article': last_article, 'next_article': next_article}
     context.update(base_context)
+    article.total_views += 1
+    article.save(update_fields=['total_views'])
     return render(request, "post-default.html", context)
 
 

@@ -19,3 +19,4 @@ class Articles(models.Model):
     image = models.ImageField(upload_to='images', verbose_name="封面图")
     text = MartorField()
     created_time = models.DateTimeField(verbose_name="创建时间", default=timezone.now)
+    total_views = models.PositiveIntegerField(default=0)
